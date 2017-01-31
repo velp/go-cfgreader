@@ -7,7 +7,7 @@ clean:
 deps:
 	go get ./...
 
-build: $(BUILD_DIR)
+build: $(BUILD_DIR) deps
 	go build -o $(BUILD_DIR)/cfgreader
 
 test: test-deps
