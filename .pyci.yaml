@@ -6,6 +6,7 @@ pipeline:
   tests: 
     stage: start
     image: golang:latest
+    work_dir: /go/src/github.com/velp/go-cfgreader
     commands: 
       - id
       - pwd
@@ -15,12 +16,14 @@ pipeline:
   test2: 
     stage: start
     image: golang:latest
+    work_dir: /go/src/github.com/velp/go-cfgreader
     commands:
       - id
       - pwd
   compile:
     stage: build
-    image: golang:latest,
+    image: golang:latest
+    work_dir: /go/src/github.com/velp/go-cfgreader
     commands:
       - env
       - go get .
