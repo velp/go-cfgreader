@@ -1,0 +1,40 @@
+stages:
+  - start
+  - build
+
+pipeline:
+  tests: 
+    stage: start
+    image: golang:latest
+    commands: 
+      - id
+      - pwd
+      - ls ./
+      - go get .
+      - make test
+  test2: 
+    stage: start
+    image: golang:latest
+    commands:
+      - id
+      - pwd
+  compile:
+    stage: build
+    image: golang:latest,
+    commands:
+      - env
+      - go get .
+      - make build
+      - pwd
+    artifacts: _output
+    environment:
+      - PRODUCTION=1
+      - BUILD_PARAM=test
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+      - MYSQL_ROOT_PASSWORD=test
